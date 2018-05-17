@@ -1,0 +1,28 @@
+.footer-list{
+    list-style:none;
+}
+
+.footer-list a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer-list a:hover, a:visited{
+    text-decoration: none;
+    color: purple;
+}
+
+.map {
+    height: 80%;
+}
+
+.fondosa{
+      background-color: pink;
+      background: orange;
+      color: olivedrab;
+}
+
+.titulo
+{
+ font-weight: 700;
+} 
