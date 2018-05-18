@@ -11,8 +11,9 @@
         <div class="col-6">
             <label class="titulo">Fecha : {{$event->fecha}} </label>
         </div>
-        <div class="col-6">
-            <label class="titulo">Ver detalles</label>
+        <div class="col-6 arti-link">
+            <a href="{{action('EventController@show', $event)}}" class="btn btn-primary">Ver mas</a>
         </div>
     </div>
 </article>
+

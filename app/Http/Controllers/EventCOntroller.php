@@ -66,7 +66,10 @@ class EventCOntroller extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $id=Auth::id();
+        //nota mental get() retorna una collecion mientras first solo uno?
+        $evento=Event::where('id',$event->id)->where('user_id',$id)->first();
+        return view('event.show',  ['evento' => $evento]);
     }
 
     /**
@@ -77,7 +80,9 @@ class EventCOntroller extends Controller
      */
     public function edit(Event $event)
     {
-        //
+        $id=Auth::id();
+        $evento=Event::where('id',$event);
+        return view('event.edit',  ['evento' => $evento]);
     }
 
     /**

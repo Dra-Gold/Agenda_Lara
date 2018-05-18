@@ -12,7 +12,8 @@
     @if($events)
         @foreach ($events as $event) 
             {{-- muestra los eventos --}}
-            @include('event.parcial.articulo')          
+            @include('event.parcial.articulo') 
+                 
         @endforeach
 
         <div class="pagination justify-content-center">

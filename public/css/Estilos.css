@@ -25,4 +25,8 @@
 .titulo
 {
  font-weight: 700;
-} 
+}
+
+.arti-link a{
+    color: white;
+}
