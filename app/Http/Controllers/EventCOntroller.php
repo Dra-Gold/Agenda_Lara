@@ -15,8 +15,11 @@ class EventCOntroller extends Controller
      */
     public function index()
     {
+        //obtiene el id del usuario logeado
        $id=Auth::id();
-       $events=Event::where('user_id',$id)->take(2)->get();
+       //obtienen todos los eventos del usuario logeado
+       $events=Event::where('user_id',$id)->latest()->paginate(3);
+       //se rentorna a la vista y se envian los eventos
        return view('event.index',  ['events' => $events]);
     }
 
@@ -27,6 +30,7 @@ class EventCOntroller extends Controller
      */
     public function create()
     {
+        //se rentorna a la vista 
         return view('event.create');
     }
 
@@ -38,17 +42,20 @@ class EventCOntroller extends Controller
      */
     public function store(Request $request)
     {
-        $event= new Event();
-        $event->Nombre=$request->get('Nombre');
-        $event->fecha=$request->get('Fecha');
-        $event->horai=$request->get('HoraI');
-        $event->horat=$request->get('HoraT');
-        $event->direccion=$request->get('Lugar');
-        $event->lat=$request->get('lat');
-        $event->lng=$request->get('lng');
-        $event->user_id=Auth::id();
-        $event->save();
-        return view('event.index', ['success' => 'Evento Agregado Correctamente']);
+        //obtiene el id del usuario logeado
+        $id=Auth::id();
+        //se crea el evento con los datos obtenidos del request
+        Event::create(['nombre'=>$request['Nombre'],
+        'fecha'=>$request['Fecha'],
+        'horai'=>$request['HoraI'],
+        'horat'=>$request['HoraT'],
+        'direccion'=>$request['Lugar'],
+        'lat'=>$request['lat'],
+        'lng'=>$request['lng'],
+        'user_id'=>$id
+        ]);
+         //se rentorna a la vista  y se envia mensaje
+        return redirect('/events')->with('success','Evento Agregado Correctamente'); 
     }
 
     /**

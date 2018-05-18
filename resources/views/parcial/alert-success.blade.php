@@ -1,5 +1,5 @@
-@isset($success)
+@if(session('success'))
 <div class="alert alert-success mt-3 animated fadeInLeft">
-<p>{{$success}}</p>
+<p>{{ session('success') }}</p>
 </div>
-@endisset
+@endif
