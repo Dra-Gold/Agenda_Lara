@@ -8,6 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class EventCOntroller extends Controller
 {
+    public function __construct()
+    {
+        //solo usuario logeado
+        $this->middleware('auth');
+        //solo si el evento correspondo al usuario 
+        $this->middleware('eventper')->only('show','edit');
+    }
+    public function getUsuario()
+    {
+       $id=Auth::id();
+       return $id;
+    }
+    //metodo que busca el evento del usuario especifico
+    public function buscar(Event $event)
+    {
+        //nota mental get() retorna una collecion mientras first solo uno
+        $evento=Event::where('id',$event->id)->first();
+        return $evento;
+    }
+  
     /**
      * Display a listing of the resource.
      *
@@ -15,10 +35,9 @@ class EventCOntroller extends Controller
      */
     public function index()
     {
-        //obtiene el id del usuario logeado
-       $id=Auth::id();
+
        //obtienen todos los eventos del usuario logeado
-       $events=Event::where('user_id',$id)->latest()->paginate(3);
+       $events=Event::UsersCorrecto()->paginate(3);
        //se rentorna a la vista y se envian los eventos
        return view('event.index',  ['events' => $events]);
     }
@@ -42,8 +61,7 @@ class EventCOntroller extends Controller
      */
     public function store(Request $request)
     {
-        //obtiene el id del usuario logeado
-        $id=Auth::id();
+        $id=$this->getUsuario();
         //se crea el evento con los datos obtenidos del request
         Event::create(['nombre'=>$request['Nombre'],
         'fecha'=>$request['Fecha'],
@@ -57,7 +75,7 @@ class EventCOntroller extends Controller
          //se rentorna a la vista  y se envia mensaje
         return redirect('/events')->with('success','Evento Agregado Correctamente'); 
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -66,10 +84,9 @@ class EventCOntroller extends Controller
      */
     public function show(Event $event)
     {
-        $id=Auth::id();
-        //nota mental get() retorna una collecion mientras first solo uno?
-        $evento=Event::where('id',$event->id)->where('user_id',$id)->first();
+        $evento=$this->buscar($event);
         return view('event.show',  ['evento' => $evento]);
+        
     }
 
     /**
@@ -80,8 +97,7 @@ class EventCOntroller extends Controller
      */
     public function edit(Event $event)
     {
-        $id=Auth::id();
-        $evento=Event::where('id',$event);
+        $evento=$this->buscar($event);
         return view('event.edit',  ['evento' => $evento]);
     }
 
@@ -105,6 +121,11 @@ class EventCOntroller extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $id=$this->getUsuario();
+        //nota mental get() retorna una collecion mientras first solo uno
+        $evento=Event::where('id',$event->id)->delete();
+        return redirect('/events')->with('success','Evento Eliminado Correctamente');
     }
+
+    
 }

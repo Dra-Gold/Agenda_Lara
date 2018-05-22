@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::resource('events', 'EventController')->middleware('auth');
+Route::resource('events', 'EventController');
 
 Auth::routes();
 

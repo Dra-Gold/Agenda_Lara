@@ -6,14 +6,13 @@
 @section('content')
 {{-- se incluye una subvista que tiene un alert --}}
 @include('parcial.alert-success')
-
+@include('errors.404')
 <div class="container mt-3">
     <h3>Eventos</h3>
-    @if($events)
+    @if(count($events)!=null)
         @foreach ($events as $event) 
             {{-- muestra los eventos --}}
-            @include('event.parcial.articulo') 
-                 
+            @include('event.parcial.articulo')  
         @endforeach
 
         <div class="pagination justify-content-center">

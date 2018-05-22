@@ -27,6 +27,14 @@
  font-weight: 700;
 }
 
+.titulo::first-letter{
+    text-transform: uppercase;
+}
+
 .arti-link a{
     color: white;
+}
+
+.mapu{
+ height: 350px;
 }
