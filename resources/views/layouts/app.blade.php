@@ -33,6 +33,7 @@
                 @include('parcial.linknavbar')
             @else
                 @include('parcial.authdropmenu')
+                @include('parcial.espacio')
             @endguest
              </div>
         </div>

@@ -10,7 +10,6 @@
             <div class="card-body">
               <form method="POST" action="{{ url('events') }}" >
               @csrf
-              <input type="hidden" name="action" value="CrearShedule">
               <input type="hidden" name="lat" id="latitud">
               <input type="hidden" name="lng" id="longitud">
                   <div class="form-group">

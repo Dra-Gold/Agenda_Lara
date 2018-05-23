@@ -1,27 +1,34 @@
-//Inicia el mapa en el documento
-window.addEventListener("load",initMap,false);
-//funcion que inicia el mapa
-function initMap() {
+window.addEventListener( 'load',initMap,false);
+
+function initMap(){
+    var lati = document.getElementById( "lat" ).value;
+    var lngo = document.getElementById( "lng" ).value;
+    var lugar= {lat: parseFloat(lati), lng: parseFloat(lngo) }
     var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -33.4488897, lng: -70.6692655 },
-      zoom: 13
-    });
-    
+        center: lugar,
+        zoom: 15
+      });
+      var marker = new google.maps.Marker({
+        position: lugar,
+        map: map,
+        title: 'Lugar'
+      });
 
-   var input = /** @type {!HTMLInputElement} */(
-        document.getElementById('pac-input'));
-
-
+    var input = document.getElementById('buscador'); 
     var autocomplete = new google.maps.places.Autocomplete(input);
+    
     autocomplete.bindTo('bounds', map);
 
-    var infowindow = new google.maps.InfoWindow();
-    var marker = new google.maps.Marker({
-      map: map,
-      anchorPoint: new google.maps.Point(0, -29)
-    });
 
     autocomplete.addListener('place_changed', function() {
+    
+      var infowindow = new google.maps.InfoWindow();
+      var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29),
+        title: 'Lugar Nuevo'
+      });
+
       infowindow.close();
       marker.setVisible(false);
       var place = autocomplete.getPlace();
@@ -51,15 +58,14 @@ function initMap() {
 
       bounds  = new google.maps.LatLngBounds();
       
-      $('#latitud').val(marker.position.lat());
-      $('#longitud').val(marker.position.lng());
+      $('#lat').val(marker.position.lat());
+      $('#lng').val(marker.position.lng());
 
       loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
       bounds.extend(loc);
-      map.fitBounds(bounds);       
+            
       map.panToBounds(bounds); 
 
     });
 
 }
-

@@ -8,11 +8,9 @@
          <div class="card bg-light" style="width: 18rem;">
             <div class="card-header">Editar Evento</div>
             <div class="card-body">
-              <form method="POST" action="{{ url('events') }}" >
+              <form method="POST" action="{{ route('events.update',$evento) }}" >
               @csrf
-              <input type="hidden" name="action" value="CrearShedule">
-              <input type="hidden" name="lat" id="latitud">
-              <input type="hidden" name="lng" id="longitud">
+              <input name="_method" type="hidden" value="PATCH">
                   <div class="form-group">
                         <div class="form-group">
                           <label for="NombreEvento">Nombre</label>
@@ -39,7 +37,7 @@
                   <div class="form-group ">
                         <div class="form-group ">
                           <label for="FechaEvento">Lugar</label>
-                          <input type="text" class="form-control"  value="{{ $evento->direccion }}" name="Lugar" required id="pac-input">
+                          <input type="text" class="form-control"  value="{{ $evento->direccion }}" name="Lugar" required id="buscador">
                         </div>
                   </div>
                   <input type="hidden" name="lat" id="lat" value="{{ $evento->lat }}" >
@@ -50,10 +48,17 @@
             </div>
          </div>
         </div> 
-        <div class="col-6"><div id="map" class="map"></div></div>
+        <div class="col-6">
+            <div class="card text-white bg-secondary">
+                <h5 class="card-header">Mapa</h5>
+                <div class="card-body" >
+                <div id="map" class="mapu"></div>
+              </div>
+            </div>
+        </div>
       </div>
 </div>
 
-    @include('parcial.scripshow');
+    @include('parcial.scripedit');
 
 @endsection

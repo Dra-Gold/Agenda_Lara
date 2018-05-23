@@ -15,5 +15,4 @@ function iniciartMap(){
         title: 'Lugar'
       });
 
- 
 }

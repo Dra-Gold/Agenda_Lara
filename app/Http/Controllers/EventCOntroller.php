@@ -110,7 +110,20 @@ class EventCOntroller extends Controller
      */
     public function update(Request $request, Event $event)
     {
-        //
+        $id=$this->getUsuario();
+        $evento=Event::find($event->id);
+        //dd($request->all());
+        $evento->update(['nombre'=>$request['Nombre'],
+        'fecha'=>$request['Fecha'],
+        'horai'=>$request['HoraI'],
+        'horat'=>$request['HoraT'],
+        'direccion'=>$request['Lugar'],
+        'lat'=>$request['lat'],
+        'lng'=>$request['lng'],
+        'user_id'=>$id
+        ]);
+
+        return redirect('/events')->with('success','Evento Moficado Correctamente');
     }
 
     /**

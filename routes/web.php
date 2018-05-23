@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', function () {
     return view('index');
 });
+
+Route::resource('users','UserController')->except(['index','store','create']);

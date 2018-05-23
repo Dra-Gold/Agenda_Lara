@@ -29,5 +29,6 @@ return [
     'Send Password Reset Link'=> 'Enviar Correo para reiniciar contraseña',
     'Agenda'=> 'Agenda',
     'Eventos'=> 'Eventos',
-    'Eventos Create'=> 'Crear Eventos'
+    'Eventos Create'=> 'Crear Eventos',
+    'Perfil'=> 'Perfil'
 ];
