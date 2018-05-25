@@ -32,7 +32,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $usuario= User::find($user->id);
+        return view('user.edit',  ['user' => $usuario]);
     }
 
     /**
@@ -44,7 +45,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $usuario= User::find($user->id);
+        $usuario->update(['name'=>$request['name'],
+        'email' =>$request['email']]);
+        return view('user.show',  ['user' => $usuario]);
     }
 
     /**
@@ -53,6 +57,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+    //pensar mejor solucion?
     public function destroy(User $user)
     {
         $usuario= User::find($user->id)->delete();

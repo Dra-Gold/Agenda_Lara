@@ -21,8 +21,6 @@
         <div class="collapse navbar-collapse" id="navbarNavAgenda">
              <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link " href="#ini">{{ __('inicio.Inicio') }}</a>
-                <a class="nav-item nav-link" href="#nosotros">{{ __('inicio.Nosotros') }}</a>
-                <a class="nav-item nav-link" href="#servicio">{{ __('inicio.Servicios') }}</a>
                 <a class="nav-item nav-link " href="#contacto">{{ __('inicio.Contacto') }}</a>
             @auth
                 @include('parcial.dropmenu')

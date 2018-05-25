@@ -1,5 +1,5 @@
 @extends('layouts.app2')
-@section('title','Perfil')
+@section('title','Editar Perfil')
 @section('content')
 
 
@@ -18,16 +18,15 @@
             <hr>
         </div>
         <div class="col-8">
-           <p><label>Nombre : </label> {{ $user->name }} </p>
-           <p><label>Correo Electronico : </label> {{ $user->email }} </p>
+            <form action="{{ route('users.update',$user)}}" method="post">
+           <p><label>Nombre  </label> <input type="text" class="form-control" value="{{ $user->name }}" name="name" required > </p>
+           <p><label>Correo Electronico  </label><input type="email" class="form-control" value="{{ $user->email }}" name="email" required > </p>
            <p>
-            <form action="{{ route('users.destroy',$user)}}" method="post">
                 @csrf
-                <input name="_method" type="hidden" value="DELETE">
-                <input type="submit" class="btn btn-danger" value="Eliminar">
+                <input name="_method" type="hidden" value="PUT">
+                <input type="submit" class="btn btn-warning" value="Editar Usuario">
             </form>
            </p>
-           <p class="text-muted"><small>Su cuenta se eliminara pasado un limite de tiempo, en caso de volver contactar con administrador</small></p>
         </div>
     </div>
         

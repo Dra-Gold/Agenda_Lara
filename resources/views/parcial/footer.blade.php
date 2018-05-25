@@ -6,7 +6,7 @@
            <ul class="footer-list">
                <li><a href="https://github.com/Dra-Gold">GitHub</a></li>
            </ul>
-       Agenda ME @Todos los derechos reservados
+       Agenda ME @Todos los derechos reservados a sus recpectivos dueños
        </div> 
      </div>
     </footer>
